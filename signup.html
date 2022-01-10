@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+          function progress() {
+            var password = $("#password").val();
+            var username = $("#username").val();
+            console.log(password);
+            console.log(username);         
+            $.ajax({
+              url: "php/signup.php",
+              data: {
+                username:username,
+                password:password
+              },
+              type: "POST",
+              datatype: "html",
+              success: function( output ) {
+              alert(output);
+                $( "#out" ).html(output);
+                location.href='index.html';
+        
+              },
+              error : function(){
+                alert( "Request failed." );
+              }
+            }); 
+          }
+        </script>
+    </head>
+    
+    <body>
+        <div id="out" style="border: 1pz solid black; height: 20px; width:200px "></div>
+        <form>
+            <input type="text" id="username" placeholder="Username">
+            <input type="text" id="password" placeholder="password">
+            <input type="button" onclick="progress()" value="GOGO">
+        </form>
+    </body>
+</html>
